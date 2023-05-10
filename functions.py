@@ -1,6 +1,7 @@
 
 import pandas as pd
 import numpy as np
+import locale
 
 
 df=pd.read_csv('Movies_ETL.csv')
@@ -8,32 +9,48 @@ df=pd.read_csv('Movies_ETL.csv')
 
 df.drop(columns=['id','overview','status','tagline','idcollection','idgenres','idpcompany','slang_name','pcountry_isocode'], inplace=True)
 df.drop_duplicates(inplace=True)
-df
 
 
 
-def peliculas_mes(mes):
+
+""" def peliculas_mes(mes):
     fechas=pd.to_datetime(df['release_date'],format='%Y-%m-%d')
     nmes=fechas[fechas.dt.month_name(locale='es_CO')==mes.capitalize()]
     respuesta=nmes.shape[0]
-    return {'mes':mes, 'cantidad':respuesta}
+    return {'mes':mes, 'cantidad':respuesta} """
 
 
-peliculas_mes('octubre')
+def peliculas_mes(mes):
+    # Set the locale to Spanish
+    locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
+    
+    fechas = pd.to_datetime(df['release_date'], format='%Y-%m-%d')
+    nmes = fechas[fechas.dt.strftime('%B').str.capitalize() == mes.capitalize()]
+    respuesta = nmes.shape[0]
+    return {'mes': mes, 'cantidad': respuesta}
 
+
+
+
+
+
+""" def peliculas_dia(dia):
+    fechas=pd.to_datetime(df['release_date'],format='%Y-%m-%d')
+    ndia=fechas[fechas.dt.day_name(locale='es_CO')==dia.capitalize()]
+    respuesta=ndia.shape[0]
+    return {'dia':dia, 'cantidad':respuesta} """
 
 
 def peliculas_dia(dia):
+    locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
     fechas=pd.to_datetime(df['release_date'],format='%Y-%m-%d')
-    ndia=fechas[fechas.dt.day_name(locale='es_CO')==dia.capitalize()]
+    ndia = fechas[fechas.dt.strftime('%A') == dia.lower()]
+    print(fechas.dt.strftime('%A'))
     respuesta=ndia.shape[0]
     return {'dia':dia, 'cantidad':respuesta}
 
 
-peliculas_dia('lunes')
 
-
-peliculas_dia('sábado')
 
 
 
@@ -48,7 +65,7 @@ def franquicia(franquicia):
     return {'franquicia':franquicia, 'cantidad':cantidad, 'ganancia_total':gananciat, 'ganancia_promedio':gananciap}
 
 
-franquicia('Toy Story Collection')
+
 
 
 # API 4
@@ -60,7 +77,7 @@ def peliculas_pais(pais):
     return {'pais': pais, 'cantidad': int(cantidad)}
 
 
-peliculas_pais('united states of america')
+
 
 
 # API 5
@@ -75,7 +92,7 @@ def productoras(productora):
     return {'productora':productora, 'ganancia_total':gtotal, 'cantidad':cantidad}
 
 
-productoras('Warner Bros.')
+
 
 
 # API 6
@@ -92,7 +109,6 @@ def retorno(pelicula):
     return {'pelicula':pelicula, 'inversion':int(inver), 'ganacia':int(gan),'retorno':int(ret), 'anio':int(an)}
 
 
-retorno('toy story')
 
 
 # API 7 - SISTEMA DE RECOMENDACION
