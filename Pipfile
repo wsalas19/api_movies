@@ -9,7 +9,6 @@ uvicorn = "*"
 pandas = "*"
 numpy = "*"
 
-
 [dev-packages]
 
 [requires]
