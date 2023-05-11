@@ -35,14 +35,14 @@ async def root():
 #Se ingresa el mes y la funcion retorna la cantidad de peliculas que se estrenaron 
 # ese mes (nombre del mes, en str, ejemplo 'enero') historicamente
 @app.get("/peliculas/mes/{mes}")
-async def peliculas_mes(mes):
+async def peliculas_por_mes(mes):
     return peliculas_mes(mes)
 
 
 #Se ingresa el dia y la funcion retorna la cantidad de peliculas que se estrenaron 
 # ese dia (de la semana, en str, ejemplo 'lunes') historicamente
 @app.get("/peliculas/dia/{dia}")
-async def peliculas_dia(dia):
+async def peliculas_por_dia(dia):
     return peliculas_dia(dia)
 
 
@@ -54,13 +54,13 @@ async def peliculas_franquicia(nombre_franquicia:str):
 
 #Ingresas el pais, retornando la cantidad de peliculas producidas en el mismo
 @app.get("/peliculas/pais/{pais}")
-async def peliculas_pais(pais):
+async def peliculas_por_pais(pais):
     return peliculas_pais(pais)
 
 
 #Ingresas la productora, retornando la ganancia total y la cantidad de peliculas que produjeron
 @app.get("/peliculas/productoras/{nombre_productora}")
-async def peliculas_productora(nombre_productora):
+async def peliculas_por_productora(nombre_productora):
     return productoras(nombre_productora)
 
 
@@ -71,7 +71,7 @@ async def retorno_peliculas(nombre_pelicula:str):
 
 #Ingresas un nombre de pelicula y te recomienda las similares en una lista de 5 valores
 @app.get("/peliculas/recomendacion/{titulo_pelicula}")
-async def recomendacion_recomendacion(titulo_pelicula):
+async def recomendacion_peliculas(titulo_pelicula):
     # here goes the logic
     #
     #
