@@ -59,8 +59,8 @@ def franquicia(franquicia):
     fran=df[['collection_name','budget','revenue']].dropna(subset=['collection_name'])
     fran=fran[fran['collection_name'].map(str.lower).apply(lambda x: f_low in x)]
     cantidad=fran.shape[0]
-    gananciat=(fran['revenue']-fran['budget']).sum()
-    gananciap=(fran['revenue']-fran['budget']).mean()
+    gananciat=fran['revenue'].sum()
+    gananciap=fran['revenue'].mean()
     return {'franquicia':franquicia, 'cantidad':cantidad, 'ganancia_total':gananciat, 'ganancia_promedio':gananciap}
 
 
@@ -87,7 +87,7 @@ def productoras(productora):
     pprod['pcompany_name']=pprod['pcompany_name'].map(str.lower)
     pprod=pprod[pprod.pcompany_name.str.contains(productora.lower(), regex=False)]
     cantidad=pprod.shape[0]
-    gtotal=(pprod['revenue']-pprod['budget']).sum()
+    gtotal=pprod['revenue'].sum()
     return {'productora':productora, 'ganancia_total':gtotal, 'cantidad':cantidad}
 
 
