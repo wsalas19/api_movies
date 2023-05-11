@@ -34,48 +34,48 @@ async def root():
 
 #Se ingresa el mes y la funcion retorna la cantidad de peliculas que se estrenaron 
 # ese mes (nombre del mes, en str, ejemplo 'enero') historicamente
-@app.get("/movies/month/{month}")
-async def movies_month(month):
-    return peliculas_mes(month)
+@app.get("/peliculas/mes/{mes}")
+async def movies_month(mes):
+    return peliculas_mes(mes)
 
 
 #Se ingresa el dia y la funcion retorna la cantidad de peliculas que se estrenaron 
 # ese dia (de la semana, en str, ejemplo 'lunes') historicamente
-@app.get("/movies/day/{day}")
-async def movies_day(day):
-    return peliculas_dia(day)
+@app.get("/peliculas/dia/{dia}")
+async def movies_day(dia):
+    return peliculas_dia(dia)
 
 
 #Se ingresa la franquicia, retornando la cantidad de peliculas, ganancia total y promedio
-@app.get("/movies/franchise/{franchise_name}")
-async def movies_franchise(franchise_name:str):
-    return franquicia(franchise_name)
+@app.get("/peliculas/franquicia/{nombre_franquicia}")
+async def movies_franchise(nombre_franquicia:str):
+    return franquicia(nombre_franquicia)
 
 
 #Ingresas el pais, retornando la cantidad de peliculas producidas en el mismo
-@app.get("/movies/country/{country}")
-async def movies_country(country):
-    return peliculas_pais(country)
+@app.get("/peliculas/pais/{pais}")
+async def movies_country(pais):
+    return peliculas_pais(pais)
 
 
 #Ingresas la productora, retornando la ganancia total y la cantidad de peliculas que produjeron
-@app.get("/movies/producer/{producer}")
-async def movies_producer(producer):
-    return productoras(producer)
+@app.get("/peliculas/productoras/{nombre_productora}")
+async def movies_producer(nombre_productora):
+    return productoras(nombre_productora)
 
 
 #'Ingresas la pelicula, retornando la inversion, la ganancia, el retorno y el año en el que se lanzo
-@app.get("/movies/info/{movie_name}")
-async def movies_info(movie_name:str):
-    return retorno(movie_name)
+@app.get("/peliculas/retorno/{nombre_pelicula}")
+async def movies_info(nombre_pelicula:str):
+    return retorno(nombre_pelicula)
 
 #Ingresas un nombre de pelicula y te recomienda las similares en una lista de 5 valores
-@app.get("/movies/recommend/{movie_title}")
-async def movies_recommend(movie_title):
+@app.get("/peliculas/recomendacion/{titulo_pelicula}")
+async def movies_recommend(titulo_pelicula):
     # here goes the logic
     #
     #
-    return {'lista recomendada': [movie_title]}
+    return {'lista recomendada': [titulo_pelicula]}
 
 
 if __name__ == "__main__":
