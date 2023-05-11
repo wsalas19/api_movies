@@ -45,7 +45,6 @@ def peliculas_dia(dia):
     locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
     fechas=pd.to_datetime(df['release_date'],format='%Y-%m-%d')
     ndia = fechas[fechas.dt.strftime('%A') == dia.lower()]
-    print(fechas.dt.strftime('%A'))
     respuesta=ndia.shape[0]
     return {'dia':dia, 'cantidad':respuesta}
 
