@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 import uvicorn
 from fastapi.middleware.cors import CORSMiddleware
-from functions import peliculas_mes, peliculas_dia, peliculas_pais, franquicia, productoras, retorno
+from utils.functions import peliculas_mes, peliculas_dia, peliculas_pais, franquicia, productoras, retorno
 
 app = FastAPI()
 
