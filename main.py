@@ -2,8 +2,10 @@ from fastapi import FastAPI
 import uvicorn
 from fastapi.middleware.cors import CORSMiddleware
 from utils.functions import peliculas_mes, peliculas_dia, peliculas_pais, franquicia, productoras, retorno
+from utils.recommend import recomendaciones
 
 app = FastAPI()
+
 
 
 
@@ -72,10 +74,7 @@ async def retorno_peliculas(nombre_pelicula:str):
 #Ingresas un nombre de pelicula y te recomienda las similares en una lista de 5 valores
 @app.get("/peliculas/recomendacion/{titulo_pelicula}")
 async def recomendacion_peliculas(titulo_pelicula):
-    # here goes the logic
-    #
-    #
-    return {'lista recomendada': [titulo_pelicula]}
+    return recomendaciones(titulo_pelicula)
 
 
 if __name__ == "__main__":

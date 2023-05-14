@@ -4,11 +4,7 @@ import numpy as np
 import locale
 
 
-df=pd.read_csv('data/Movies_ETL.csv')
-
-
-df.drop(columns=['id','overview','status','tagline','idcollection','idgenres','idpcompany','slang_name','pcountry_isocode'], inplace=True)
-df.drop_duplicates(inplace=True)
+df=pd.read_csv('data/Movies_ETL_EDA.csv')
 
 
 
