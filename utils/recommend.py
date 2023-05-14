@@ -6,7 +6,7 @@ import numpy as np
 
 def recomendaciones(titulo):
     try:
-        sample_md=pd.read_csv('data/CompletoML.csv')
+        sample_md=pd.read_csv('data/ML_Data.csv')
         cv1 = CountVectorizer(stop_words='english')
         cv_matrix1 = cv1.fit_transform(sample_md['text'])
         cosine_sim1 = cosine_similarity(cv_matrix1,cv_matrix1)
