@@ -3,13 +3,13 @@ from sklearn.feature_extraction.text import CountVectorizer
 import pandas as pd
 import numpy as np
 
+sample_md=pd.read_csv('data/ML_Data_md.csv')
+cv1 = CountVectorizer(stop_words='english')
+cv_matrix1 = cv1.fit_transform(sample_md['text'])
+cosine_sim1 = cosine_similarity(cv_matrix1,cv_matrix1)
 
 def recomendaciones(titulo):
     try:
-        sample_md=pd.read_csv('data/ML_Data_sm.csv')
-        cv1 = CountVectorizer(stop_words='english')
-        cv_matrix1 = cv1.fit_transform(sample_md['text'])
-        cosine_sim1 = cosine_similarity(cv_matrix1,cv_matrix1)
         # Getting the index of the movie that matches the title
         idx = sample_md[sample_md['title'] == str(titulo).lower()].index[0]
         # Getting the similarity scores
