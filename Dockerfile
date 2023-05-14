@@ -13,8 +13,8 @@ COPY ./requirements.txt /code/requirements.txt
 
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
-COPY ./Movies_ETL.csv /code/
-COPY ./functions.py /code/
+COPY ./data /code/data
+COPY ./utils /code/utils
 COPY ./main.py /code/
 
 EXPOSE 8000
